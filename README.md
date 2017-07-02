@@ -1,6 +1,6 @@
 # Rezult
 
-Rezult is a very lightweight gem for communication with subroutines
+Rezult is a very lightweight gem for communication with service classes and subroutines.
 
 ## Installation
 
@@ -20,7 +20,58 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+It's nice to keep results of all the calls to different service classes and subroutines in a unified manner throughout
+your project. This is exactly what this small class is for. Inheriting from `OpenStruct`, it encapsulates logic of
+method success/failure, resulting data and error messages.
+
+You create `Rezult` object using class methods `.success` or `.fail`, passing resulting data or error message,
+respectively:
+```ruby
+return Rezult.success(key1: value1, key2: value2)
+
+return Rezult.fail("Error message.")
+```
+Then, in caller, you can use the following:
+```ruby
+r.success?
+r.failed?
+r.key1
+r.key2
+r.error_message
+```
+
+Your code might look like:
+```ruby
+require 'rezult'
+
+class MyService
+  def perform
+    # do your stuff
+    # passed = ...
+    # key = ...
+    # model = ...
+    
+    if passed
+      Rezult.success(key: key, model: model)
+    else
+      Rezult.fail("Sorry dude, it didn't work out.")
+    end
+  end
+end
+
+class MyServiceUsingClass
+  def do_stuff
+    service = MyService.new
+    result = service.perform
+    if result.success?
+      return {result.key => result.model}
+    else
+      raise MyException.new(result.error_message)
+  end
+end
+```
+
+ 
 
 ## Development
 
