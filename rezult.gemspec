@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Dan Polyuha"]
   spec.email         = ["dpolyuha@gmail.com"]
 
-  spec.summary       = "TBD"
-  spec.description   = "TBD"
+  spec.summary       = "A very lightweight gem for communication with service classes and subroutines"
+  spec.description   = spec.summary
   spec.homepage      = "https://github.com/danpolyuha/rezult"
   spec.license       = "MIT"
 
