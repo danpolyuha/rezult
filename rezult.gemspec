@@ -5,7 +5,7 @@ require "rezult/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "rezult"
-  spec.version       = Rezult::VERSION
+  spec.version       = RezultVersion::VERSION
   spec.authors       = ["Dan Polyuha"]
   spec.email         = ["dpolyuha@gmail.com"]
 

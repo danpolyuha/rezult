@@ -1,3 +1,3 @@
-module Rezult
+module RezultVersion
   VERSION = "0.1.0"
 end

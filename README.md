@@ -1,6 +1,6 @@
 # Rezult
 
-`Rezult` is a very lightweight gem for communication with subroutines
+Rezult is a very lightweight gem for communication with subroutines
 
 ## Installation
 
