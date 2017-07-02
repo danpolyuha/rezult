@@ -26,7 +26,7 @@ RSpec.describe Rezult do
     end
   end
 
-  describe "#[]" do
+  describe "resulting data" do
     let(:key1) { :number }
     let(:value1) { 5 }
     let(:key2) { :string }
@@ -39,15 +39,14 @@ RSpec.describe Rezult do
     end
 
     it "returns nil for not existing keys" do
-      expect(result[:blabla]).to be_nil
+      expect(result.send(:blabla)).to be_nil
     end
   end
 
   describe "#error_message" do
-    let(:error_message) { "some error" }
-    let(:result) { Rezult.fail(error_message) }
-
     it "has correct 'error_message'" do
+      error_message = "some error"
+      result = Rezult.fail(error_message)
       expect(result.error_message).to eq(error_message)
     end
   end
