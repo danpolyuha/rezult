@@ -3,7 +3,7 @@ require "spec_helper"
 RSpec.describe Rezult do
 
   describe ".success" do
-    let(:result) { Rezult.success }
+    let(:result) { described_class.success }
 
     it "succeeds" do
       expect(result.success?).to be_truthy
@@ -15,7 +15,7 @@ RSpec.describe Rezult do
   end
 
   describe ".fail" do
-    let(:result) { Rezult.fail }
+    let(:result) { described_class.fail }
 
     it "doesn't succeed" do
       expect(result.success?).to be_falsey
@@ -31,7 +31,7 @@ RSpec.describe Rezult do
     let(:value1) { 5 }
     let(:key2) { :string }
     let(:value2) { 'blabla' }
-    let(:result) { Rezult.success(key1 => value1, key2 => value2) }
+    let(:result) { described_class.success(key1 => value1, key2 => value2) }
 
     it "returns correct values" do
       expect(result.send(key1)).to eq(value1)
@@ -46,7 +46,7 @@ RSpec.describe Rezult do
   describe "#error_message" do
     it "has correct 'error_message'" do
       error_message = "some error"
-      result = Rezult.fail(error_message)
+      result = described_class.fail(error_message)
       expect(result.error_message).to eq(error_message)
     end
   end
