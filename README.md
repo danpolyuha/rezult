@@ -71,7 +71,9 @@ class MyServiceUsingClass
 end
 ```
 
+## Error messages
  
+`fail` method accepts a single error message or an array. Array will be joined with new line symbol for representation in `error_message` method. You also have `error_messages` method for accessing the original array.
 
 ## Development
 

@@ -43,11 +43,30 @@ RSpec.describe Rezult do
     end
   end
 
-  describe "#error_message" do
+  context "when single message provided" do
+    let(:error_message) { "some error" }
+    let(:result) { described_class.fail(error_message) }
+
     it "has correct 'error_message'" do
-      error_message = "some error"
-      result = described_class.fail(error_message)
       expect(result.error_message).to eq(error_message)
     end
+
+    it "has correct 'error_messages'" do
+      expect(result.error_messages).to match_array([error_message])
+    end
   end
+
+  context "when several messages provided" do
+    let(:error_messages) { ["some error", "another error"] }
+    let(:result) { described_class.fail(error_messages) }
+
+    it "has correct 'error_message'" do
+      expect(result.error_message).to eq("some error\nanother error")
+    end
+
+    it "has correct 'error_messages'" do
+      expect(result.error_messages).to match_array(error_messages)
+    end
+  end
+
 end

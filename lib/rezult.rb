@@ -3,20 +3,22 @@ require "rezult/version"
 
 class Rezult < OpenStruct
 
-  attr_reader :error_message
+  ERROR_MESSAGE_JOINER = "\n"
 
-  def initialize(success:, data: {}, error_message: nil)
+  attr_reader :error_messages
+
+  def initialize(success:, data: {}, error_messages: [])
     super(data)
     @success = success
-    @error_message = error_message
+    @error_messages = [*error_messages]
   end
 
   def self.success(data = {})
     new(success: true, data: data)
   end
 
-  def self.fail(error_message = nil)
-    new(success: false, error_message: error_message)
+  def self.fail(error_messages = [])
+    new(success: false, error_messages: [*error_messages])
   end
 
   def success?
@@ -25,6 +27,10 @@ class Rezult < OpenStruct
 
   def failed?
     !success?
+  end
+
+  def error_message
+    error_messages.join(ERROR_MESSAGE_JOINER)
   end
 
 end
